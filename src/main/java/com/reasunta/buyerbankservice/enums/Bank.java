@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @Getter
 public enum Bank {
-    SELLER_BANK("seller_bank", "http://10.224.8.138/api/v1/notification"),
+    SELLER_BANK("seller_bank", "http://10.224.8.138:8888/api/v1/notification"),
     ;
 
     private final String bankId;
