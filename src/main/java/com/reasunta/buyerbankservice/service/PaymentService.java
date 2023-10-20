@@ -1,5 +1,6 @@
 package com.reasunta.buyerbankservice.service;
 
+import com.reasunta.buyerbankservice.dto.NotificationDto;
 import com.reasunta.buyerbankservice.exception.AccountNotFoundException;
 import com.reasunta.buyerbankservice.connector.SellerBankConnector;
 import com.reasunta.buyerbankservice.dto.Payment;
@@ -36,7 +37,8 @@ public class PaymentService {
         if (payment.getResultType().equals(REJECTED)) {
             try {
                 Bank bank = Bank.fromBankId(payment.getBankId());
-                sellerBankConnector.sendPaymentResult(bank.getUrl(), payment.getReference(), APPROVED);
+                var notification = new NotificationDto(REJECTED, payment.getDescription());
+                sellerBankConnector.sendPaymentResult(bank.getUrl(), payment.getReference(), notification);
             } catch (Exception e) {
                 /* return REST response anyway even if bank is not available */
             }
@@ -55,7 +57,8 @@ public class PaymentService {
 
 
         Bank bank = Bank.fromBankId(payment.getBankId());
-        sellerBankConnector.sendPaymentResult(bank.getUrl(), payment.getReference(), APPROVED);
+        var notification = new NotificationDto(REJECTED, payment.getDescription());
+        sellerBankConnector.sendPaymentResult(bank.getUrl(), payment.getReference(), notification);
 
         return new PaymentResult(APPROVED);
     }
