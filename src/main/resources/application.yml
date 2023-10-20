@@ -1,0 +1,20 @@
+server:
+  port: 8182
+
+spring:
+  flyway:
+    user: sa
+    password: password
+    schemas: app-db
+    url: jdbc:h2:mem:buyer-bank-db
+    locations: classpath:db/migration
+  datasource:
+    url: jdbc:h2:mem:buyer-bank-db
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  jpa.database-platform: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      # for debug reasons
+      enabled: true
