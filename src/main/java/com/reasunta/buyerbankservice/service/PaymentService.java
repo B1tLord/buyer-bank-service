@@ -57,7 +57,7 @@ public class PaymentService {
 
 
         Bank bank = Bank.fromBankId(payment.getBankId());
-        var notification = new NotificationDto(REJECTED, payment.getDescription());
+        var notification = new NotificationDto(APPROVED, payment.getDescription());
         sellerBankConnector.sendPaymentResult(bank.getUrl(), payment.getReference(), notification);
 
         return new PaymentResult(APPROVED);
