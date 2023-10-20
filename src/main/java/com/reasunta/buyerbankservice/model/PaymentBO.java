@@ -33,5 +33,8 @@ public class PaymentBO {
     private BigDecimal amount;
 
     @Column
+    private String reference;
+
+    @Column
     private String description;
 }

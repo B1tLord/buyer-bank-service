@@ -65,6 +65,7 @@ public class PaymentService {
                 .accountId(accountId)
                 .amount(payment.getAmount())
                 .description(payment.getDescription())
+                .reference(payment.getReference())
                 .build();
     }
 }
