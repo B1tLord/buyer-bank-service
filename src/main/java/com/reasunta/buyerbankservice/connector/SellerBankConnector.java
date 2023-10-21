@@ -1,7 +1,6 @@
 package com.reasunta.buyerbankservice.connector;
 
 import com.reasunta.buyerbankservice.dto.NotificationDto;
-import com.reasunta.buyerbankservice.enums.PaymentResultType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;

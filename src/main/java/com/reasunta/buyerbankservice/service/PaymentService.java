@@ -1,11 +1,12 @@
 package com.reasunta.buyerbankservice.service;
 
+import com.reasunta.buyerbankservice.component.BankConfigParams;
+import com.reasunta.buyerbankservice.dto.Bank;
 import com.reasunta.buyerbankservice.dto.NotificationDto;
 import com.reasunta.buyerbankservice.exception.AccountNotFoundException;
 import com.reasunta.buyerbankservice.connector.SellerBankConnector;
 import com.reasunta.buyerbankservice.dto.Payment;
 import com.reasunta.buyerbankservice.dto.PaymentResult;
-import com.reasunta.buyerbankservice.enums.Bank;
 import com.reasunta.buyerbankservice.exception.InsufficientFundsException;
 import com.reasunta.buyerbankservice.model.ClientAccountBO;
 import com.reasunta.buyerbankservice.model.PaymentBO;
@@ -27,6 +28,7 @@ public class PaymentService {
     private final ClientAccountRepo clientAccountRepo;
     private final PaymentRepo paymentRepo;
     private final SellerBankConnector sellerBankConnector;
+    private final BankConfigParams bankConfigParams;
 
     @Transactional
     public PaymentResult processPayment(Payment payment) {
@@ -36,7 +38,7 @@ public class PaymentService {
 
         if (payment.getResultType().equals(REJECTED)) {
             try {
-                Bank bank = Bank.fromBankId(payment.getBankId());
+                Bank bank = BankConfigParams.fromBankId(payment.getBankId());
                 var notification = new NotificationDto(REJECTED, payment.getDescription());
                 sellerBankConnector.sendPaymentResult(bank.getUrl(), payment.getReference(), notification);
             } catch (Exception e) {
@@ -56,7 +58,7 @@ public class PaymentService {
         clientAccountRepo.save(account);
 
 
-        Bank bank = Bank.fromBankId(payment.getBankId());
+        Bank bank = BankConfigParams.fromBankId(payment.getBankId());
         var notification = new NotificationDto(APPROVED, payment.getDescription());
         sellerBankConnector.sendPaymentResult(bank.getUrl(), payment.getReference(), notification);
 

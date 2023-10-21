@@ -16,3 +16,9 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: none
+
+service:
+  test: fasdfa
+  banks:
+    - bankId: seller_bank
+      url: ${SELLER_BANK_URL:http://10.224.8.54:8888/api/v1/notification}

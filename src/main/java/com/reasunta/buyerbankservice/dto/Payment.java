@@ -1,20 +1,20 @@
 package com.reasunta.buyerbankservice.dto;
 
 import com.reasunta.buyerbankservice.enums.PaymentResultType;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 
 @Getter
 @Setter
 @AllArgsConstructor
+@ToString
+@NoArgsConstructor
 public class Payment {
-    private final String reference;
-    private final String accountNo;
-    private final BigDecimal amount;
-    private final String bankId;
-    private final String description;
-    private final PaymentResultType resultType;
+    private String reference;
+    private String accountNo;
+    private BigDecimal amount;
+    private String bankId;
+    private String description;
+    private PaymentResultType resultType;
 }
