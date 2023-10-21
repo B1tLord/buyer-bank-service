@@ -22,7 +22,6 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 public class BankConfigParams {
     private List<Bank> banks;
-    private String test;
 
 
     private static Map<String, Bank> bankMap;
