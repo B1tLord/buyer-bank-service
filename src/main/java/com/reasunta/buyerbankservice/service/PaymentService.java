@@ -15,7 +15,7 @@ import com.reasunta.buyerbankservice.repo.PaymentRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 
 import java.math.BigDecimal;
 

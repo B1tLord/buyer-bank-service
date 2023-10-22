@@ -1,3 +1,8 @@
+DB_URL: jdbc:mysql://localhost:3306/reasunta?useSSL=false&serverTimezone=UTC
+DB_USERNAME: root
+DB_PASSWORD: pass123
+DB_DRIVER: com.mysql.cj.jdbc.Driver
+
 server:
   port: 8182
 
@@ -7,15 +12,17 @@ spring:
     password: password
     url: jdbc:h2:mem:buyer-bank-db
     locations: classpath:db/migration
+    check-location: false
   datasource:
-    url: jdbc:h2:mem:buyer-bank-db
-    username: sa
-    password: password
-    driverClassName: org.h2.Driver
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driverClassName: ${DB_DRIVER}
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: none
+    show-sql: true
+    properties.hibernate.default_schema: ${DB_SCHEMA}
 
 service:
   banks:
